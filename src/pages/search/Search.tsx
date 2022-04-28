@@ -24,17 +24,19 @@ const Search: React.FC = () => {
             .then(setResults);
     }, []);
 
-    return results.length > 0
-        ? <div>
+    return results.length > 0 ? (
+        <div>
             <h1>List of Service Providers related to {question?.name} near you</h1>
             {results.map(resultToCard)}
             <button>find all service providers on map</button>
             <Link to={question?.link ?? "/"}>Back</Link>
         </div>
-        : <div>
+    ) : (
+        <div>
             Loading
             <Link to={question?.link ?? "/"}>Back</Link>
-        </div>;
+        </div>
+    );
 };
 
 function resultToCard(searchItem: SearchItem) {
