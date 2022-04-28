@@ -1,8 +1,8 @@
 import {Question} from "./types/Question";
 
 export const questions: Question[] = [
-    {name: "Housing", link: "/housing"},
-    {name: "Well Being", link: "/wellBeing"},
-    {name: "Employment", link: "/employment"},
-    {name: "Essentials", link: "/essentials"},
+    {id: "housing", name: "Housing", link: "/housing", checkboxes: ["Social housing", "Private landlords"]},
+    {id: "well-being", name: "Well Being", link: "/well-being", checkboxes: ["Mental health", "Physical health"]},
+    {id: "employment", name: "Employment", link: "/employment", checkboxes: ["Part time", "Full time", "Apprentices", "Volunteering"]},
+    {id: "essentials", name: "Essentials", link: "/essentials", checkboxes: ["Clothing", "Food", "Household necessities"]},
 ];

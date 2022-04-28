@@ -6,11 +6,16 @@ import {
 } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import {questions} from "./constants";
+import BaseQuestionPage from "./questions/BaseQuestionPage";
+import {Question} from "./types/Question";
 
 const App: React.FC = () => {
+    const RenderQuestion = (question: Question, key: number) =>
+        <Route key={key} path={question.link} element={<BaseQuestionPage question={question} />} />;
+
     return <Router>
-        <Routes>
-            {questions.map((question, key) => <Route key={key} path={question.link} element={<div>{question.name}</div>} />)}
+        <Routes>question
+            {questions.map(RenderQuestion)}
             <Route path="*" element={<LandingPage />}></Route>
         </Routes>
     </Router>;
