@@ -16,12 +16,15 @@ const App: React.FC = () => {
         <Route key={key} path={question.link} element={<BaseQuestionPage question={question} />} />;
 
     return <Router>
-        <Routes>question
-            {questions.map(RenderQuestion)}
-            <Route path="/search/expanded" element={<ExpandedSearchItem />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="*" element={<LandingPage />} />
-        </Routes>
+        <div className="transition-all duration-200 bg-gray-200 min-h-screen w-full">
+            <Routes>
+                question
+                {questions.map(RenderQuestion)}
+                <Route path="/search/expanded*" element={<ExpandedSearchItem />} />
+                <Route path="/search*" element={<Search />} />
+                <Route path="*" element={<LandingPage />} />
+            </Routes>
+        </div>
     </Router>;
 };
 

@@ -17,19 +17,6 @@ const Search: React.FC = () => {
         return axiosResponse.data;
     }
 
-    function resultToCard(searchItem: SearchItem) {
-        const expandParams = new URLSearchParams(params);
-        expandParams.append("id", searchItem.id);
-        return <div key={searchItem.id}>
-            <h3>{searchItem.title}</h3>
-            <p>{searchItem.description ? searchItem.description[0] : ""}</p>
-            <p><a href={searchItem.url}>{searchItem.url}</a></p>
-            <p><b>
-                <Link to={`/search/expanded?${expandParams.toString()}`}>Expand</Link>
-            </b></p>
-        </div>;
-    }
-
     useEffect(() => {
         Promise.all(subcategories.map(getResultsForSubcategory))
             .then(results => results.flatMap(response => response.accepted))
@@ -39,7 +26,9 @@ const Search: React.FC = () => {
     return results.length > 0 ? (
         <div>
             <h1>List of Service Providers related to {question?.name} near you</h1>
-            {results.map(resultToCard)}
+            <div className="flex flex-col lg:flex-row flex-wrap items-center lg:items-start lg:justify-center">
+                {results.map(resultToCard)}
+            </div>
             <button>find all service providers on map</button>
             <p><Link to={question?.link ?? "/"}>Back</Link></p>
         </div>
@@ -50,5 +39,27 @@ const Search: React.FC = () => {
         </div>
     );
 };
+
+function resultToCard(searchItem: SearchItem) {
+    const url = searchItem.metatags.find(tag => tag.name === "og:image");
+
+    return (
+        <div className="bg-brand-blue rounded-sm w-full lg:w-1/5 h-96 m-2 lg:m-4">
+            <div className="flex flex-col justify-between transition transform-none lg:transform hover:-translate-y-2 hover:-translate-x-2 bg-white shadow-md w-full h-full">
+                <div className="p-2">
+                    <h4 className="text-md font-semibold">{searchItem.title}</h4>
+                    <p className="text-sm mt-2">{searchItem.description}</p>
+                </div>
+                <div className="bg-white">
+                    {url?.content && <img
+                        className="object-cover rounded-t-sm shadow-md h-24 w-full "
+                        src={url.content}
+                        alt=""
+                    />}
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export default Search;
