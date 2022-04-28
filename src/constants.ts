@@ -6,3 +6,5 @@ export const questions: Question[] = [
     {id: "employment", name: "Employment", link: "/employment", checkboxes: ["Part Time", "Full Time", "Apprentices", "Volunteering"]},
     {id: "essentials", name: "Essentials", link: "/essentials", checkboxes: ["Clothing", "Food", "Household Stuff"]},
 ];
+
+export const cloudflareWorkerBaseUrl = "https://api-hook.tech9082.workers.dev/";
