@@ -1,17 +1,13 @@
 .homepage-button {
     @apply uppercase;
     @apply transition;
+    @apply translate;
     @apply text-center;
     @apply mb-4;
     @apply p-2;
     @apply border-black;
-    @apply border-t-2;
-    @apply border-l-2;
-    @apply border-r-4;
-    @apply border-b-4;
 
-    @apply hover:border-t-4;
-    @apply hover:border-l-4;
-    @apply hover:border-r-2;
-    @apply hover:border-b-2;
+    @apply border-4;
+    @apply hover:-translate-x-2;
+    @apply hover:-translate-y-2;
 }
