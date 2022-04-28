@@ -1,8 +1,8 @@
 import {IQuestion} from "./types/IQuestion";
 
 export const questions: Array<IQuestion> = [
-    {name: "Housing", link: ""},
-    {name: "Well Being", link: ""},
-    {name: "Employment", link: ""},
-    {name: "Essentials", link: ""},
+    {name: "Housing", link: "/housing"},
+    {name: "Well Being", link: "/wellBeing"},
+    {name: "Employment", link: "/employment"},
+    {name: "Essentials", link: "/essentials"},
 ];

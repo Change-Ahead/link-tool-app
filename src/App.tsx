@@ -4,15 +4,14 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import LandingPage from "./pages/landingPage";
+import {questions} from "./constants";
 
 const App: React.FC = () => {
     return <Router>
         <Routes>
-            <Route path="/employment" element={<div>employement</div>} />
-            <Route path="/well-being" element={<div>well being</div>}/>
-            <Route path="/essentials" element={<div>essentials</div>}/>
-            <Route path="/housing" element={<div>housing</div>}/>
-            <Route path="/" element={<div>home</div>} />
+            {questions.map((question, key) => <Route key={key} path={question.link} element={<div>{question.name}</div>} />)}
+            <Route path="*" element={<LandingPage />}></Route>
         </Routes>
     </Router>;
 };
