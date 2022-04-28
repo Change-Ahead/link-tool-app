@@ -12,6 +12,31 @@ const Search: React.FC = () => {
     const question = questions.find(question => question.name === category);
     const subcategories = params.getAll("subcategory");
 
+    function resultToCard(searchItem: SearchItem) {
+        const url = searchItem.metatags.find(tag => tag.name === "og:image");
+        const expandParams = new URLSearchParams(params);
+        expandParams.append("id", searchItem.id);
+
+        return (
+            <div className="bg-brand-blue rounded-sm w-full lg:w-1/5 h-96 m-2 lg:m-4">
+                <div className="flex flex-col justify-between transition transform-none lg:transform hover:-translate-y-2 hover:-translate-x-2 bg-white shadow-md w-full h-full">
+                    <div className="p-2">
+                        <h4 className="text-md font-semibold">{searchItem.title}</h4>
+                        <p className="text-sm mt-2">{searchItem.description}</p>
+                        <Link to={`/search/expanded?${expandParams.toString()}`}>Expand</Link>
+                    </div>
+                    <div className="bg-white">
+                        {url?.content && <img
+                            className="object-cover rounded-t-sm shadow-md h-24 w-full "
+                            src={url.content}
+                            alt=""
+                        />}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     async function getResultsForSubcategory(subcategory: string): Promise<SearchResponse> {
         const axiosResponse = await axios.get(`${cloudflareWorkerBaseUrl}/search/${category}/${subcategory}/London`);
         return axiosResponse.data;
@@ -39,27 +64,5 @@ const Search: React.FC = () => {
         </div>
     );
 };
-
-function resultToCard(searchItem: SearchItem) {
-    const url = searchItem.metatags.find(tag => tag.name === "og:image");
-
-    return (
-        <div className="bg-brand-blue rounded-sm w-full lg:w-1/5 h-96 m-2 lg:m-4">
-            <div className="flex flex-col justify-between transition transform-none lg:transform hover:-translate-y-2 hover:-translate-x-2 bg-white shadow-md w-full h-full">
-                <div className="p-2">
-                    <h4 className="text-md font-semibold">{searchItem.title}</h4>
-                    <p className="text-sm mt-2">{searchItem.description}</p>
-                </div>
-                <div className="bg-white">
-                    {url?.content && <img
-                        className="object-cover rounded-t-sm shadow-md h-24 w-full "
-                        src={url.content}
-                        alt=""
-                    />}
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export default Search;
