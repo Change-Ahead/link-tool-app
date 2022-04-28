@@ -14,8 +14,20 @@ const Search: React.FC = () => {
 
     async function getResultsForSubcategory(subcategory: string): Promise<SearchResponse> {
         const axiosResponse = await axios.get(`${cloudflareWorkerBaseUrl}/search/${category}/${subcategory}/London`);
-        console.log(axiosResponse);
         return axiosResponse.data;
+    }
+
+    function resultToCard(searchItem: SearchItem) {
+        const expandParams = new URLSearchParams(params);
+        expandParams.append("id", searchItem.id);
+        return <div>
+            <h3>{searchItem.title}</h3>
+            <p>{searchItem.description ? searchItem.description[0] : ""}</p>
+            <p><a href={searchItem.url}>{searchItem.url}</a></p>
+            <p><b>
+                <Link to={`/search/expanded?${expandParams.toString()}`}>Expand</Link>
+            </b></p>
+        </div>;
     }
 
     useEffect(() => {
@@ -29,7 +41,7 @@ const Search: React.FC = () => {
             <h1>List of Service Providers related to {question?.name} near you</h1>
             {results.map(resultToCard)}
             <button>find all service providers on map</button>
-            <Link to={question?.link ?? "/"}>Back</Link>
+            <p><Link to={question?.link ?? "/"}>Back</Link></p>
         </div>
     ) : (
         <div>
@@ -38,13 +50,5 @@ const Search: React.FC = () => {
         </div>
     );
 };
-
-function resultToCard(searchItem: SearchItem) {
-    return <div>
-        <h3>{searchItem.title}</h3>
-        <p>{searchItem.description}</p>
-        <a href={searchItem.url}>{searchItem.url}</a>
-    </div>;
-}
 
 export default Search;

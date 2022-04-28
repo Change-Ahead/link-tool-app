@@ -9,6 +9,7 @@ import {questions} from "./constants";
 import BaseQuestionPage from "./questions/BaseQuestionPage";
 import {Question} from "./types/Question";
 import Search from "./pages/search/Search";
+import ExpandedSearchItem from "./pages/search/ExpandedSearchItem";
 
 const App: React.FC = () => {
     const RenderQuestion = (question: Question, key: number) =>
@@ -17,6 +18,7 @@ const App: React.FC = () => {
     return <Router>
         <Routes>question
             {questions.map(RenderQuestion)}
+            <Route path="/search/expanded*" element={<ExpandedSearchItem />} />
             <Route path="/search*" element={<Search />} />
             <Route path="*" element={<LandingPage />} />
         </Routes>
