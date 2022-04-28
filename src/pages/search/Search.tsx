@@ -40,11 +40,13 @@ const Search: React.FC = () => {
 };
 
 function resultToCard(searchItem: SearchItem) {
-    return <div>
-        <h3>{searchItem.title}</h3>
-        <p>{searchItem.description}</p>
-        <a href={searchItem.url}>{searchItem.url}</a>
-    </div>;
+    return (
+        <div>
+            <h3>{searchItem.title}</h3>
+            <p>{searchItem.description}</p>
+            <a href={searchItem.url}>{searchItem.url}</a>
+        </div>
+    );
 }
 
 export default Search;
