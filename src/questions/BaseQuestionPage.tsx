@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Question} from "../types/Question";
 import {Link} from "react-router-dom";
+import Page from "../pages/Page";
 
 function BaseQuestionPage({question}: {question: Question}) {
     const [checkedState, setCheckedState] = useState(
@@ -25,7 +26,7 @@ function BaseQuestionPage({question}: {question: Question}) {
         updateSearchLink(`/search?${searchParams.toString()}`);
     };
 
-    return <div>
+    return <Page>
         <div>{question.name}</div>
         <div>Checkboxes</div>
         {question.checkboxes.map((checkbox, index) => {
@@ -49,6 +50,6 @@ function BaseQuestionPage({question}: {question: Question}) {
         })}
         <Link to={"/"}>Back</Link>
         <Link to={searchLink}>Next</Link>
-    </div>;
+    </Page>;
 }
 export default BaseQuestionPage;
