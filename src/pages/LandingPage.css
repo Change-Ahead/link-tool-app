@@ -1,5 +1,6 @@
 .homepage-button {
     @apply uppercase;
+    @apply transition;
     @apply text-center;
     @apply mb-4;
     @apply p-2;

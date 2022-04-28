@@ -24,7 +24,7 @@ const Search: React.FC = () => {
     }, []);
 
     return results.length > 0 ? (
-        <div className="transition-all duration-200">
+        <div>
             <h1>List of Service Providers related to {question?.name} near you</h1>
             <div className="flex flex-col lg:flex-row flex-wrap items-center lg:items-start lg:justify-center">
                 {results.map(resultToCard)}
