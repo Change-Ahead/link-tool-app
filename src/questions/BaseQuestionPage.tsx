@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {IQuestion} from "../types/IQuestion";
+import {Question} from "../types/Question";
 import {Link} from "react-router-dom";
 
-function BaseQuestionPage({question}: {question: IQuestion}) {
+function BaseQuestionPage({question}: {question: Question}) {
     const [checkedState, setCheckedState] = useState(
         new Array(question.checkboxes.length).fill(false)
     );
