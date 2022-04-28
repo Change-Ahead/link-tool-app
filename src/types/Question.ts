@@ -1,4 +1,6 @@
 export interface Question {
+    id: string,
     name: string,
-    link: string
+    link: string,
+    checkboxes: string[]
 }
