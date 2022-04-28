@@ -13,7 +13,7 @@ const Search: React.FC = () => {
     const subcategories = params.getAll("subcategory");
 
     function resultToCard(searchItem: SearchItem) {
-        const url = searchItem.metatags.find(tag => tag.name === "og:image");
+        const url = searchItem?.metatags?.find(tag => tag.name === "og:image") ?? null;
         const expandParams = new URLSearchParams(params);
         expandParams.append("id", searchItem.id);
 
