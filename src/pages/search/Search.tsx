@@ -41,7 +41,7 @@ const Search: React.FC = () => {
 };
 
 function resultToCard(searchItem: SearchItem) {
-    const url = searchItem.metatags.find(tag => tag.name === "og:image");
+    const url = searchItem?.metatags?.find(tag => tag.name === "og:image") ?? null;
 
     return (
         <div className="bg-brand-blue rounded-sm w-full lg:w-1/5 h-96 m-2 lg:m-4">
