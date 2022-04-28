@@ -52,7 +52,7 @@ function BaseQuestionPage({question}: {question: Question}) {
             </div>
             <div className="flex flex-row justify-between bottom-0 absolute w-full p-4 max-w-sm left-1/2 transform -translate-x-1/2">
                 <Link to={"/"}>{"<"} Back</Link>
-                <Link to={searchLink}>Next {">"}</Link>
+                {checkedState.find(value => value === true) ?  <Link to={searchLink}>Next {">"}</Link> : ""}
             </div>
         </div>
     </Page>;
