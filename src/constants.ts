@@ -8,3 +8,4 @@ export const questions: Question[] = [
 ];
 
 export const cloudflareWorkerBaseUrl = "https://api-hook-production.tech9082.workers.dev";
+export const mapsKey = "AIzaSyBxz1H9IOMPSEBP2JKuC2kIka6pL-j1rVs"; // Looks scary but it's supposed to be embedded in the HTML anyway so it's not secret

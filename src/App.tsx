@@ -10,6 +10,7 @@ import BaseQuestionPage from "./questions/BaseQuestionPage";
 import {Question} from "./types/Question";
 import Search from "./pages/search/Search";
 import ExpandedSearchItem from "./pages/search/ExpandedSearchItem";
+import Map from "./pages/map/Map";
 
 const App: React.FC = () => {
     const RenderQuestion = (question: Question, key: number) =>
@@ -18,13 +19,14 @@ const App: React.FC = () => {
     return <Router>
         <div className="transition-all duration-200 bg-gray-200 min-h-screen w-full">
             <Routes>
-                question
                 {questions.map(RenderQuestion)}
-                <Route path="/search/expanded*" element={<ExpandedSearchItem />} />
-                <Route path="/search*" element={<Search />} />
+                <Route path="/search/expanded" element={<ExpandedSearchItem />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/map" element={<Map />} />
                 <Route path="*" element={<LandingPage />} />
             </Routes>
         </div>
+        
     </Router>;
 };
 
