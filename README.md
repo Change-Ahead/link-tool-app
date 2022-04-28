@@ -4,8 +4,8 @@
 
 ### Requirements
 
-* npm 6
-* node 14
+* npm 8
+* node 16
 
 ### Run the app
 
