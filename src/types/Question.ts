@@ -1,4 +1,4 @@
-export interface IQuestion {
+export interface Question {
     name: string,
     link: string
 }

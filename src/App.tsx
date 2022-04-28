@@ -4,7 +4,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
-import LandingPage from "./pages/landingPage";
+import LandingPage from "./pages/LandingPage";
 import {questions} from "./constants";
 
 const App: React.FC = () => {

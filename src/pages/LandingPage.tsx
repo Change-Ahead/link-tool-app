@@ -1,10 +1,10 @@
 import React from "react";
 import {questions} from "../constants";
-import {IQuestion} from "../types/IQuestion";
+import {Question} from "../types/Question";
 import {Link} from "react-router-dom";
 
 function LandingPage() {
-    const LinkButton = (question: IQuestion) => <Link to={question.link}>{question.name}</Link>;
+    const LinkButton = (question: Question) => <Link to={question.link}>{question.name}</Link>;
 
     return <div>
         <h2>How can we help you?</h2>
