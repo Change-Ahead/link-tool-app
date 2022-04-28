@@ -33,24 +33,22 @@ function BaseQuestionPage({question}: {question: Question}) {
             <h3>Please select from the following:</h3>
             <div className="category">{question.name}</div>
             <div className="pl-4 pr-4">
-                {question.checkboxes.map((checkbox, index) => {
-                    return (
-                        <div className="mb-4" key={checkbox}>
-                            <label className="cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    id={`${question.id}-checkbox-${index}`}
-                                    name={checkbox}
-                                    value={checkbox}
-                                    className="mr-4 cursor-pointer"
-                                    checked={checkedState[index]}
-                                    onChange={() => handleOnChange(index)}
-                                />
-                                {checkbox}
-                            </label>
-                        </div>
-                    );
-                })}
+                {question.checkboxes.map((checkbox, index) => (
+                    <div className="mb-4" key={checkbox}>
+                        <label className="cursor-pointer">
+                            <input
+                                type="checkbox"
+                                id={`${question.id}-checkbox-${index}`}
+                                name={checkbox}
+                                value={checkbox}
+                                className="mr-4 cursor-pointer"
+                                checked={checkedState[index]}
+                                onChange={() => handleOnChange(index)}
+                            />
+                            {checkbox}
+                        </label>
+                    </div>
+                ))}
             </div>
             <div className="flex flex-row justify-between bottom-0 absolute w-full p-4 max-w-sm left-1/2 transform -translate-x-1/2">
                 <Link to={"/"}>{"<"} Back</Link>
