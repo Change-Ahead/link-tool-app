@@ -18,8 +18,8 @@ const App: React.FC = () => {
     return <Router>
         <Routes>question
             {questions.map(RenderQuestion)}
-            <Route path="/search/expanded*" element={<ExpandedSearchItem />} />
-            <Route path="/search*" element={<Search />} />
+            <Route path="/search/expanded" element={<ExpandedSearchItem />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<LandingPage />} />
         </Routes>
     </Router>;

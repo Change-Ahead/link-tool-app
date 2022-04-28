@@ -20,7 +20,7 @@ const Search: React.FC = () => {
     function resultToCard(searchItem: SearchItem) {
         const expandParams = new URLSearchParams(params);
         expandParams.append("id", searchItem.id);
-        return <div>
+        return <div key={searchItem.id}>
             <h3>{searchItem.title}</h3>
             <p>{searchItem.description ? searchItem.description[0] : ""}</p>
             <p><a href={searchItem.url}>{searchItem.url}</a></p>
