@@ -14,7 +14,6 @@ const Search: React.FC = () => {
 
     async function getResultsForSubcategory(subcategory: string): Promise<SearchResponse> {
         const axiosResponse = await axios.get(`${cloudflareWorkerBaseUrl}/search/${category}/${subcategory}/London`);
-        console.log(axiosResponse);
         return axiosResponse.data;
     }
 
@@ -25,11 +24,13 @@ const Search: React.FC = () => {
     }, []);
 
     return results.length > 0 ? (
-        <div>
+        <div className="transition-all duration-200">
             <h1>List of Service Providers related to {question?.name} near you</h1>
-            {results.map(resultToCard)}
+            <div className="flex flex-col lg:flex-row flex-wrap items-center lg:items-start lg:justify-center">
+                {results.map(resultToCard)}
+            </div>
             <button>find all service providers on map</button>
-            <Link to={question?.link ?? "/"}>Back</Link>
+            <p><Link to={question?.link ?? "/"}>Back</Link></p>
         </div>
     ) : (
         <div>
@@ -40,11 +41,21 @@ const Search: React.FC = () => {
 };
 
 function resultToCard(searchItem: SearchItem) {
+    const url = searchItem.metatags.find(tag => tag.name === "og:image");
+
     return (
-        <div>
-            <h3>{searchItem.title}</h3>
-            <p>{searchItem.description}</p>
-            <a href={searchItem.url}>{searchItem.url}</a>
+        <div className="flex flex-col justify-between transition transform-none lg:transform hover:-translate-y-2 hover:-translate-x-2 bg-white shadow-md rounded-sm w-full lg:w-1/5 h-96 m-2 lg:m-4">
+            <div className="p-2">
+                <h4 className="text-md font-semibold">{searchItem.title}</h4>
+                <p className="text-sm">{searchItem.description}</p>
+            </div>
+            <div className="bg-brand-blue">
+                {url?.content && <img 
+                    className="bg-transparent object-cover rounded-t-sm shadow-md h-24 w-full " 
+                    src={url.content}
+                    alt=""
+                />}
+            </div>
         </div>
     );
 }
