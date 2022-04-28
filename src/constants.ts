@@ -7,4 +7,4 @@ export const questions: Question[] = [
     {id: "essentials", name: "Essentials", link: "/essentials", checkboxes: ["Clothing", "Food", "Household Stuff"]},
 ];
 
-export const cloudflareWorkerBaseUrl = "https://api-hook.tech9082.workers.dev/";
+export const cloudflareWorkerBaseUrl = "https://api-hook-production.tech9082.workers.dev";

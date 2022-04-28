@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Link, useSearchParams} from "react-router-dom";
 import {cloudflareWorkerBaseUrl, questions} from "../../constants";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
+import {SearchResponse} from "../../types/SearchResponse";
 
 const Search: React.FC = () => {
     const [results, useResults] = useState([]);
@@ -12,7 +13,7 @@ const Search: React.FC = () => {
     const subcategories = params.getAll("subcategory");
 
     axios.get(`${cloudflareWorkerBaseUrl}/search/${category}/${subcategories[0]}/London`)
-        .then(function (response) {
+        .then(function (response: AxiosResponse<SearchResponse>) {
             console.log(response);
         });
 
