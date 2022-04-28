@@ -5,7 +5,7 @@ export interface SearchResponse {
     autoRejected: SearchItem[]
 }
 
-interface SearchItem {
+export interface SearchItem {
     id: string,
     url: string,
     searchCriteria: {
