@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import {questions} from "./constants";
 import BaseQuestionPage from "./questions/BaseQuestionPage";
 import {Question} from "./types/Question";
+import Search from "./pages/search/Search";
 
 const App: React.FC = () => {
     const RenderQuestion = (question: Question, key: number) =>
@@ -16,7 +17,8 @@ const App: React.FC = () => {
     return <Router>
         <Routes>question
             {questions.map(RenderQuestion)}
-            <Route path="*" element={<LandingPage />}></Route>
+            <Route path="/search*" element={<Search />} />
+            <Route path="*" element={<LandingPage />} />
         </Routes>
     </Router>;
 };
