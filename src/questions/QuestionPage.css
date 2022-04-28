@@ -1,0 +1,13 @@
+.category {
+    @apply uppercase;
+    @apply text-center;
+    @apply mb-4;
+    @apply p-2;
+    @apply border-black;
+    @apply border-t-2;
+    @apply border-l-2;
+    @apply border-r-4;
+    @apply border-b-4;
+    @apply bg-blue-300;
+    @apply w-72;
+}

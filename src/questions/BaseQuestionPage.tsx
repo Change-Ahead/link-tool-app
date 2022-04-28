@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Question} from "../types/Question";
 import {Link} from "react-router-dom";
 import Page from "../pages/Page";
+import "./QuestionPage.css";
 
 function BaseQuestionPage({question}: {question: Question}) {
     const [checkedState, setCheckedState] = useState(
@@ -27,29 +28,35 @@ function BaseQuestionPage({question}: {question: Question}) {
     };
 
     return <Page>
-        <div>{question.name}</div>
-        <div>Checkboxes</div>
-        {question.checkboxes.map((checkbox, index) => {
-            return (
-                <li key={index}>
-                    <div className="toppings-list-item">
-                        <div className="left-section">
-                            <input
-                                type="checkbox"
-                                id={`${question.id}-checkbox-${index}`}
-                                name={checkbox}
-                                value={checkbox}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                            />
-                            <label htmlFor={`custom-checkbox-${index}`}>{checkbox}</label>
+        <div className="flex flex-col">
+            <h2>How can we help you?</h2>
+            <h3>Please select from the following:</h3>
+            <div className="category">{question.name}</div>
+            <div className="pl-4 pr-4">
+                {question.checkboxes.map((checkbox, index) => {
+                    return (
+                        <div className="mb-4" key={checkbox}>
+                            <label className="cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    id={`${question.id}-checkbox-${index}`}
+                                    name={checkbox}
+                                    value={checkbox}
+                                    className="mr-4 cursor-pointer"
+                                    checked={checkedState[index]}
+                                    onChange={() => handleOnChange(index)}
+                                />
+                                {checkbox}
+                            </label>
                         </div>
-                    </div>
-                </li>
-            );
-        })}
-        <Link to={"/"}>Back</Link>
-        <Link to={searchLink}>Next</Link>
+                    );
+                })}
+            </div>
+            <div className="flex flex-row justify-between bottom-0 absolute w-full p-4 max-w-sm left-1/2 transform -translate-x-1/2">
+                <Link to={"/"}>{"<"} Back</Link>
+                <Link to={searchLink}>Next {">"}</Link>
+            </div>
+        </div>
     </Page>;
 }
 export default BaseQuestionPage;
