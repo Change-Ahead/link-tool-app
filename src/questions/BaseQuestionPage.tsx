@@ -6,17 +6,26 @@ function BaseQuestionPage({question}: {question: Question}) {
     const [checkedState, setCheckedState] = useState(
         new Array(question.checkboxes.length).fill(false)
     );
+    const [searchLink, updateSearchLink] = useState("/search");
 
     const handleOnChange = (position: number) => {
         const updatedCheckedState = checkedState.map((item, index) =>
             index === position ? !item : item
         );
-
         setCheckedState(updatedCheckedState);
+
+        const searchParams = new URLSearchParams();
+        searchParams.append("category", question.name);
+        question.checkboxes.forEach((subcategory, index) => {
+            if (updatedCheckedState[index]) {
+                searchParams.append("subcategory", subcategory);
+            }
+        });
+
+        updateSearchLink(`/search?${searchParams.toString()}`);
     };
 
     return <div>
-        <Link to="/">Home</Link>
         <div>{question.name}</div>
         <div>Checkboxes</div>
         {question.checkboxes.map((checkbox, index) => {
@@ -38,6 +47,8 @@ function BaseQuestionPage({question}: {question: Question}) {
                 </li>
             );
         })}
+        <Link to={"/"}>Back</Link>
+        <Link to={searchLink}>Next</Link>
     </div>;
 }
 export default BaseQuestionPage;
